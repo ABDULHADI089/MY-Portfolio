@@ -19,6 +19,17 @@ A personal portfolio site for Abdul, positioned as an **AI & Computer Vision Eng
 - User accounts/auth
 - Dark/light theme toggle (single, intentional theme only)
 
+## 4b. Visual Identity (updated)
+- Background: `#0D0B2B` (deep indigo-black, brighter than original)
+- Surface/card: `#1A1740` → `#221F52` gradient wash
+- Primary gradient (headlines, CTAs, glows): Violet `#A855F7` → Pink `#F472B6` → Cyan `#22D3EE`
+- CV/detection accent: Neon cyan `#22D3EE`
+- Confidence-tag accent: Amber `#FCD34D`
+- Text: primary `#FFFFFF`, secondary `#C4BFEA`
+- Grid overlay on hero: `#A855F7` at 4% opacity
+- Section dividers: gradient glow line (violet → cyan)
+- Images: coding-hero.jpg (hero split), ai-matrix.jpg (AI section banner), code-screen.jpg (Web section banner)
+
 ## 5. User stories
 - As a recruiter, I can see in the first screen what Abdul does and one proof point, without scrolling.
 - As a recruiter on mobile, the site is fully usable one-handed — no horizontal scroll, no tiny tap targets.

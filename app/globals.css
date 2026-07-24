@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F3FF;
+  --color-surface2: #EDE9FE;
+  --color-violet: #7C3AED;
+  --color-magenta: #DB2777;
+  --color-cyan: #0891B2;
+  --color-amber: #D97706;
+  --color-text-primary: #0F0A1E;
+  --color-text-secondary: #4B5563;
+  --font-sans: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #FFFFFF;
+  color: #0F0A1E;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #7C3AED 0%, #DB2777 50%, #0891B2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Gradient button ── */
+.gradient-btn {
+  background: linear-gradient(135deg, #7C3AED, #DB2777, #0891B2);
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+.gradient-btn:hover {
+  opacity: 0.9;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.35);
+}
+
+/* ── Section divider ── */
+.section-glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #7C3AED60, #0891B260, transparent);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F5F3FF; }
+::-webkit-scrollbar-thumb { background: #7C3AED60; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7C3AED; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

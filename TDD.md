@@ -97,7 +97,23 @@ type SkillGroup = {
 - Preview deployments per PR/branch
 - Environment: none required for v1 (no API keys, fully static)
 
-## 10. Testing
+## 11. Design Tokens (updated — vibrant theme)
+```css
+--color-bg: #0D0B2B;
+--color-surface: #1A1740;
+--color-surface2: #221F52;
+--color-violet: #A855F7;
+--color-magenta: #F472B6;
+--color-cyan: #22D3EE;
+--color-amber: #FCD34D;
+--color-text-primary: #FFFFFF;
+--color-text-secondary: #C4BFEA;
+```
+- Gradient btn: `linear-gradient(135deg, #A855F7, #F472B6, #22D3EE)`
+- Card bg: `linear-gradient(135deg, #1A1740, #221F52)`
+- Section glow line: `linear-gradient(90deg, transparent, #A855F760, #22D3EE60, transparent)`
+- Hero grid overlay: `#A855F7` at 4% opacity, 60px grid
+
 - Manual responsive QA at 375px / 414px / 768px / 1024px / 1440px
 - Lighthouse CI check before merge to `main` (optional GitHub Action)
 - Cross-browser: Chrome, Safari, Firefox (mobile Safari especially — iOS is a large chunk of recruiter traffic)
