@@ -34,18 +34,21 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      # Pages must already be enabled on the repository:
+      #   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+      # The workflow token is not permitted to create the Pages site itself, so
+      # the base path is set explicitly rather than read from this step's
+      # outputs. That keeps the build working even if this step is unhappy.
       - name: Configure Pages
         id: pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
-        with:
-          # Turns Pages on for the repo if it has never been enabled.
-          enablement: true
 
       - name: Build static export
         env:
           # Pages serves this repo from /MY-Portfolio, not from the domain root.
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_PUBLIC_BASE_PATH: /MY-Portfolio
+          NEXT_PUBLIC_SITE_URL: https://abdulhadi089.github.io/MY-Portfolio
           # Optional: add a WEB3FORMS_KEY repo secret to have the contact form
           # deliver straight to the inbox instead of opening a mail client.
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
