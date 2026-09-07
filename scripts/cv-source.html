@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 13mm 14mm; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif;
+    color:#1b2029; font-size:9.4pt; line-height:1.46; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .name { font-size:25pt; font-weight:700; letter-spacing:-0.6pt; color:#0c1017; margin:0 0 2pt; }
+  .role { font-size:10.3pt; color:#4d6fe0; font-weight:600; margin:0 0 7pt; letter-spacing:.1pt; }
+  .contact { font-size:8.7pt; color:#525c6b; display:flex; flex-wrap:wrap; gap:0 9pt; margin:0 0 11pt; }
+  .contact a { color:#525c6b; text-decoration:none; }
+  .contact span.sep { color:#b9c0cb; }
+  .rule { height:2.2pt; background:linear-gradient(90deg,#4d6fe0,#25b394 62%,#dfe4ec); border-radius:2pt; margin:0 0 12pt; }
+  h2 {
+    font-size:8.6pt; letter-spacing:1.5pt; text-transform:uppercase; color:#4d6fe0;
+    margin:0 0 6pt; padding-bottom:3pt; border-bottom:.7pt solid #dfe4ec; font-weight:700;
+  }
+  section { margin-bottom:11pt; }
+  p.summary { margin:0; color:#39404d; text-align:justify; }
+  .job { margin-bottom:8pt; page-break-inside:avoid; }
+  .job:last-child { margin-bottom:0; }
+  .job-head { display:flex; justify-content:space-between; align-items:baseline; gap:10pt; margin-bottom:1pt; }
+  .job-title { font-size:10.2pt; font-weight:700; color:#0c1017; }
+  .job-org { font-size:9pt; color:#4d6fe0; font-weight:600; }
+  .job-when { font-size:8.3pt; color:#6b7484; white-space:nowrap; font-weight:600; }
+  ul { margin:3pt 0 0; padding:0 0 0 11pt; }
+  li { margin-bottom:2.2pt; color:#39404d; }
+  li::marker { color:#25b394; }
+  .proj { margin-bottom:5.5pt; page-break-inside:avoid; }
+  .proj:last-child { margin-bottom:0; }
+  .proj b { font-size:9.5pt; color:#0c1017; }
+  .proj .tech { font-size:8.1pt; color:#6b7484; }
+  .proj p { margin:1pt 0 0; color:#39404d; }
+  .skill-row { display:flex; gap:7pt; margin-bottom:3.6pt; align-items:baseline; }
+  .skill-row:last-child { margin-bottom:0; }
+  .skill-k { flex:0 0 88pt; font-weight:700; color:#0c1017; font-size:8.8pt; }
+  .skill-v { flex:1; color:#39404d; }
+</style></head>
+<body>
+  <div class="name">Abdul Hadi</div>
+  <div class="role">Software Engineer &middot; Full-Stack &amp; Computer Vision</div>
+  <div class="contact">
+    <span>Multan, Pakistan</span><span class="sep">|</span>
+    <span>+92 300 6341150</span><span class="sep">|</span>
+    <a href="mailto:anhadisk11@gmail.com">anhadisk11@gmail.com</a><span class="sep">|</span>
+    <a href="https://www.linkedin.com/in/abdul-hadi-72b190201">linkedin.com/in/abdul-hadi-72b190201</a><span class="sep">|</span>
+    <a href="https://github.com/ABDULHADI089">github.com/ABDULHADI089</a>
+  </div>
+  <div class="rule"></div>
+
+  <section>
+    <h2>Profile</h2>
+    <p class="summary">Software engineer with hands-on experience across full-stack web and mobile development (Next.js, React Native/Expo, Node.js, NestJS, Supabase/PostgreSQL) and applied AI/computer vision (TensorFlow, Keras, OpenCV, PyTorch). Currently building production applications at DevNodes, with prior experience delivering an ERP system and a real-time facial recognition attendance system at Intermarket Knit, and AI model development at Heapware Technologies. Strong foundation in C++, data structures and algorithms, with a track record of shipping monorepo-based products end to end.</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">Software Engineer / Web Developer</span> &nbsp;<span class="job-org">DevNodes</span></div>
+        <div class="job-when">Present</div>
+      </div>
+      <ul>
+        <li>Build full-stack web and mobile applications using Next.js, React Native (Expo), Node.js, NestJS and Supabase/PostgreSQL.</li>
+        <li>Developed TrekTrain, a commuter rail booking platform for the South African market.</li>
+        <li>Architected a NestJS + Drizzle ORM backend monorepo with Zod validation, containerized with Docker.</li>
+        <li>Work within Turborepo monorepos that combine a Next.js web app and an Expo mobile app on a shared backend.</li>
+        <li>Delivered Pakistan Electric POS, a cloud-based multi-user EPOS system for an electronics retail store.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">Software Developer</span> &nbsp;<span class="job-org">Intermarket Knit Pvt., Lahore</span></div>
+        <div class="job-when">Mar 2025 &ndash; Nov 2025</div>
+      </div>
+      <ul>
+        <li>Led full-stack development and deployment of a comprehensive ERP system integrating Finance, HR and Inventory to centralize operations and improve data integrity.</li>
+        <li>Designed and implemented a high-accuracy, real-time facial recognition attendance system, replacing legacy methods with instant, touchless employee time tracking.</li>
+        <li>Integrated the attendance system with the ERP's HR and payroll modules, automating reconciliation and eliminating manual payroll errors.</li>
+        <li>Engineered scalable SQL database structures and high-performance queries supporting large volumes of transactional data and real-time reporting.</li>
+        <li>Collaborated with HR and Finance department heads on requirement analysis and User Acceptance Testing (UAT).</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">AI Engineer</span> &nbsp;<span class="job-org">Heapware Technologies, Lahore</span></div>
+        <div class="job-when">Jun 2023 &ndash; Mar 2024</div>
+      </div>
+      <ul>
+        <li>Developed and implemented AI models for a range of applications as part of the AI engineering team.</li>
+        <li>Enhanced existing AI solutions and integrated new features into production pipelines.</li>
+        <li>Collaborated with the development team to ensure seamless deployment of AI models.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selected Projects</h2>
+    <div class="proj"><b>Smart Cric</b> <span class="tech">&mdash; OpenCV, PyTorch, Expo, Next.js, Turborepo</span>
+      <p>AI umpire for street/tape-ball cricket: real-time ball tracking and umpiring decisions from a phone camera, with a live scoreboard. Expanding into a Turborepo monorepo (Next.js web + Expo mobile) with live score API integration.</p></div>
+    <div class="proj"><b>Facial Attendance System</b> <span class="tech">&mdash; TensorFlow, OpenCV, Python, SQL</span>
+      <p>Computer-vision staff attendance for a knitwear factory floor, feeding directly into the ERP's HR and payroll modules so the register reconciles itself.</p></div>
+    <div class="proj"><b>TrekTrain</b> <span class="tech">&mdash; Next.js, Node.js, PostgreSQL</span>
+      <p>Commuter rail booking platform for the South African market &mdash; schedules, seat selection and ticketing for daily riders.</p></div>
+    <div class="proj"><b>Pakistan Electric POS</b> <span class="tech">&mdash; Next.js, Supabase, TypeScript</span>
+      <p>Cloud-based, multi-user EPOS running an electronics retail store: inventory, billing and multi-terminal sync.</p></div>
+    <div class="proj"><b>Household Staff Work Manager</b> <span class="tech">&mdash; Turborepo, Expo, Supabase</span>
+      <p>Turborepo monorepo pairing a Next.js dashboard with an Expo mobile app on a shared Supabase backend.</p></div>
+    <div class="proj"><b>Emotion Checker</b> <span class="tech">&mdash; Keras, OpenCV, Python</span>
+      <p>Deep-learning classification of human emotion from facial expressions, with a visualization layer that makes predictions legible.</p></div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skill-row"><div class="skill-k">Web &amp; Mobile</div><div class="skill-v">Next.js, React.js, React Native (Expo), Node.js, NestJS, TypeScript, JavaScript (ES6+), HTML5, CSS3, SCSS, Tailwind CSS, Bootstrap, Redux, Fabric.js</div></div>
+    <div class="skill-row"><div class="skill-k">Backend &amp; Data</div><div class="skill-v">Supabase, PostgreSQL, SQL, Drizzle ORM, Zod, Docker, Turborepo monorepos</div></div>
+    <div class="skill-row"><div class="skill-k">AI / Computer Vision</div><div class="skill-v">TensorFlow, Keras, PyTorch, OpenCV &mdash; facial recognition, emotion detection, real-time object/ball tracking</div></div>
+    <div class="skill-row"><div class="skill-k">Foundations</div><div class="skill-v">C++, data structures &amp; algorithms, OOP</div></div>
+    <div class="skill-row"><div class="skill-k">Strengths</div><div class="skill-v">Problem solving, rapid technology adoption, managing complex projects under pressure</div></div>
+  </section>
+</body></html>
