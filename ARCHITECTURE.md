@@ -1,56 +1,91 @@
-# Architecture — AI/CV Engineer Portfolio
+# Architecture
 
-## 1. System overview
-A single-page, statically-generated Next.js site. No backend, no database, no auth. All content is compiled at build time and served as static assets via Vercel's CDN — the entire "system" is: build once → serve globally → redeploy on content change.
+## Overview
+
+A single-page, statically exported Next.js site. No backend, no database, no
+authentication, no runtime data fetching. `next build` emits plain HTML, CSS and
+JS into `out/`, which any static host can serve.
 
 ```
-┌─────────────────────────────────────────────┐
-│                 Vercel (CDN)                  │
-│  ┌─────────────────────────────────────────┐ │
-│  │        Next.js 14 (App Router, SSG)      │ │
-│  │                                           │ │
-│  │  /app/page.tsx  ─── composes sections ── │ │
-│  │       │                                  │ │
-│  │       ├── Hero                           │ │
-│  │       ├── About                          │ │
-│  │       ├── AICVSpotlight                  │ │
-│  │       ├── Projects  ← reads /lib/data.ts │ │
-│  │       ├── Skills    ← reads /lib/data.ts │ │
-│  │       └── Contact                        │ │
-│  │                                           │ │
-│  │  Static assets: /public/images, resume.pdf│ │
-│  └─────────────────────────────────────────┘ │
-└─────────────────────────────────────────────┘
-              ▲
-              │ push to main → auto-build
-              │
-        GitHub repo
+lib/content.ts ──► server components ──► next build (output: "export") ──► out/
+                                                                            │
+                                              ┌─────────────────────────────┴───┐
+                                              │                                 │
+                                     GitHub Pages                           Vercel
+                                  (/MY-Portfolio)                            (root)
 ```
 
-## 2. Why static, no DB
-Content (projects, skills, career history) changes a handful of times a year. Introducing Supabase/a CMS adds auth, latency, and a query layer for content that's essentially fixed at deploy time. Content lives as typed TypeScript objects in `/lib/data.ts` — editing it is a git commit, which is also simpler to review/version than a database row.
+The only network call the site ever makes at runtime is the optional contact
+form POST to Web3Forms.
 
-**When this changes:** if a future version needs a blog, an admin-editable case-study builder, or dynamic project ordering by visitor analytics — that's the trigger to introduce Supabase + an API layer. Not before.
+## Rendering strategy
 
-## 3. Request flow
-1. Visitor requests the URL.
-2. Vercel CDN serves the pre-built static HTML/CSS/JS (no server compute per request).
-3. Client hydrates only the components that need interactivity (nav toggle, scroll-reveal observer, project card hover state).
-4. Resume download / mailto / social links are direct static/anchor links — no server round-trip.
+Everything is prerendered at build time. Client components are used only where
+behaviour genuinely requires the browser:
 
-## 4. Deployment pipeline
-```
-git push → GitHub → Vercel webhook → build (next build) → deploy to CDN
-                                    ↳ preview deploy for PRs/branches
-                                    ↳ production deploy on main
-```
+| Component | Why it is a client component |
+|---|---|
+| `Preloader` | Progress animation; releases `body.loading` |
+| `Reveals` | One `IntersectionObserver` for every `.rv` element on the page |
+| `Ambient` | Pointer spotlight, cursor dot, scroll progress, aurora parallax |
+| `Lattice` | Canvas render loop for the hero visual |
+| `Nav` | Sticky state and the mobile sheet |
+| `DotNav` | Scroll-position tracking |
+| `Stats` | Count-up animation on first view |
+| `ProjectCard` | Pointer-tracked aura and tilt |
+| `VideoModal` | Focus trap, Escape handling, scroll lock |
+| `ContactForm` / `ContactChannels` | Form state, submission, clipboard |
 
-## 5. Third-party dependencies
-- **Vercel** — hosting, CDN, preview deployments, (optional) Analytics
-- **next/font** — Space Grotesk, Inter, IBM Plex Mono, self-hosted via Next (no external font CDN request)
-- No auth provider, no database, no external API calls at runtime for v1
+Every section body (`About`, `Work`, `Experience`, `Process`, `Toolkit`,
+`Contact`) is a server component. `Reveals` deliberately observes elements by
+class from a single mounted component, so adding a scroll animation to a section
+does not force it across the client boundary.
 
-## 6. Scaling / future considerations
-- If a contact form (vs. mailto) is added later: a lightweight serverless function (Vercel Function) posting to an email service (Resend/SendGrid) — still no persistent DB needed.
-- If case studies grow long-form (blog-style): consider MDX for content authoring before reaching for a full CMS.
-- Analytics: Vercel Analytics is the lowest-friction add — no separate account, privacy-friendly, drop-in.
+## Content
+
+`lib/content.ts` is the single source of truth — profile, projects, experience,
+process, toolkit, section list, CV path. Components read from it and render; no
+content is hard-coded in a component.
+
+Education/university is intentionally excluded from the site.
+
+## Base path handling
+
+The same build targets two hosts with different roots. `NEXT_PUBLIC_BASE_PATH`
+is read in `next.config.ts` (for `basePath`/`assetPrefix`) and re-exported
+through `lib/asset.ts`.
+
+`next/link` and `next/image` apply the base path themselves. Anything handed
+straight to the DOM — the CV download link, the demo video `src` — must go
+through `asset()`. That is the one rule to remember when adding a public asset.
+
+## Styling
+
+A single stylesheet, `app/globals.css`, holding CSS custom properties for the
+palette, type and spacing, then component classes. Tailwind v4 is imported and
+available, but the design system is expressed in plain CSS because it was ported
+from a hand-authored design.
+
+Reduced motion is respected globally: a `prefers-reduced-motion` block disables
+animation and forces reveal states visible, and the JS render loops (lattice,
+counters, tilt) each check the same media query before animating.
+
+## Performance notes
+
+- The hero lattice is a hand-written 2D canvas projection rather than a 3D
+  library, which keeps roughly 600 KB off the wire.
+- The lattice pauses when the hero scrolls out of view and when the tab is hidden.
+- The Smart Cric demo video is `preload="none"` inside a modal, so its ~25 MB
+  costs nothing until a visitor asks to watch it.
+- Icons are inline SVG, so there is no icon-library dependency.
+
+## Accessibility
+
+- Skip link to main content.
+- The video modal is a labelled `role="dialog"` with a focus trap, Escape to
+  close, and focus restored to the trigger on close.
+- Form fields carry labels, `aria-invalid` and `aria-describedby` error wiring,
+  with a polite live region for submission status.
+- The decorative canvas, background field, cursor and ticker are `aria-hidden`.
+- Section dots expose text labels to screen readers.
+- A `.no-js` fallback keeps content visible if JavaScript never runs.
