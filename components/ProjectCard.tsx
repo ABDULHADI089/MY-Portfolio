@@ -11,6 +11,11 @@ export default function ProjectCard({ project, delay }: { project: Project; dela
   const auraRef = useRef<HTMLDivElement>(null);
   const [showVideo, setShowVideo] = useState(false);
 
+  // Resolved on the first pointer move and cached: tilt only applies to precise
+  // pointers, and never against reduced-motion. Querying matchMedia on every
+  // move re-evaluates two media queries per event for an answer that cannot change.
+  const tiltEnabled = useRef<boolean | null>(null);
+
   const onPointerMove = (e: React.PointerEvent<HTMLElement>) => {
     const card = cardRef.current;
     if (!card) return;
@@ -21,11 +26,13 @@ export default function ProjectCard({ project, delay }: { project: Project; dela
       auraRef.current.style.top = `${e.clientY - r.top}px`;
     }
 
-    // Tilt only for precise pointers, and never against reduced-motion.
-    if (
-      window.matchMedia("(hover:hover) and (pointer:fine)").matches &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (tiltEnabled.current === null) {
+      tiltEnabled.current =
+        window.matchMedia("(hover:hover) and (pointer:fine)").matches &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    if (tiltEnabled.current) {
       const px = (e.clientX - r.left) / r.width - 0.5;
       const py = (e.clientY - r.top) / r.height - 0.5;
       card.style.transform = `perspective(900px) rotateX(${(-py * 4).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg) translateY(-4px)`;

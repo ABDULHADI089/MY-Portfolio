@@ -62,8 +62,14 @@ jobs:
         with:
           path: out
 
+  # Pages creates a `github-pages` environment restricted to the default branch,
+  # so a deploy attempted from any other branch is refused:
+  #   Branch "..." is not allowed to deploy to github-pages due to
+  #   environment protection rules.
+  # Feature branches therefore build and validate only; main publishes.
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
