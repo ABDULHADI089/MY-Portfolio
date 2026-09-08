@@ -77,12 +77,24 @@ It sets the base path from the Pages configuration, writes `.nojekyll` so the
 The workflow enables Pages on first run. If it is ever turned off, re-enable it
 under **Settings → Pages → Source: GitHub Actions**.
 
-### Vercel
+### Vercel (optional, not currently deployed)
 
-`vercel.json` is committed and ready. Import the repository at
-[vercel.com/new](https://vercel.com/new) and deploy — no build settings to
-change. Leave `NEXT_PUBLIC_BASE_PATH` unset so the site serves from the domain
-root, and set `NEXT_PUBLIC_SITE_URL` to the Vercel or custom domain.
+There is no Vercel deployment yet — `vercel.json` is committed so an import
+works without configuration, but connecting the account is a manual step.
+
+1. Import the repository at [vercel.com/new](https://vercel.com/new).
+2. Accept the detected settings. Vercel reads `output: "export"` from
+   `next.config.ts` and serves `out/` itself, so leave the build and output
+   fields alone.
+3. Leave `NEXT_PUBLIC_BASE_PATH` **unset** — Vercel serves from the domain
+   root, and setting it would prefix every asset with `/MY-Portfolio`.
+4. Set `NEXT_PUBLIC_SITE_URL` to the assigned domain so canonical links,
+   Open Graph and JSON-LD point at the right host.
+
+`vercel.json` deliberately carries only cache headers. `framework`,
+`buildCommand` and `outputDirectory` are left out: Vercel's own Next.js
+detection handles them, and overriding `outputDirectory` for a Next.js project
+is a common cause of failed imports.
 
 ## Content
 
