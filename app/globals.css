@@ -111,27 +111,49 @@ a {
   mask-image: radial-gradient(80% 60% at 50% 20%, #000 20%, transparent 85%);
   -webkit-mask-image: radial-gradient(80% 60% at 50% 20%, #000 20%, transparent 85%);
 }
+/*
+ * Ambient glows.
+ *
+ * These were solid circles under filter: blur(110px). The cost of that scales
+ * with the blurred area, and the circles are sized in vw — ~230px across on a
+ * phone but ~870px on a 1440px laptop. Because they also translate on scroll,
+ * the browser re-rasterized an enormous blurred layer every frame: measured at
+ * 12fps on desktop against 43fps on mobile, and removing them alone restored
+ * 60fps.
+ *
+ * A radial-gradient reproduces the same soft falloff as part of normal
+ * painting, with no filter and nothing to re-rasterize.
+ */
 .field .aur {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.4;
   will-change: transform;
 }
 .field .a1 {
-  width: 60vw;
-  height: 60vw;
-  background: #3b4aa8;
-  top: -24vw;
-  right: -16vw;
+  width: 78vw;
+  height: 78vw;
+  top: -32vw;
+  right: -22vw;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(59, 74, 168, 0.5) 0%,
+    rgba(59, 74, 168, 0.34) 32%,
+    rgba(59, 74, 168, 0.13) 60%,
+    rgba(59, 74, 168, 0) 82%
+  );
 }
 .field .a2 {
-  width: 44vw;
-  height: 44vw;
-  background: #1f6b5e;
-  bottom: 6vh;
-  left: -18vw;
-  opacity: 0.3;
+  width: 62vw;
+  height: 62vw;
+  bottom: -4vh;
+  left: -24vw;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(31, 107, 94, 0.38) 0%,
+    rgba(31, 107, 94, 0.24) 34%,
+    rgba(31, 107, 94, 0.09) 62%,
+    rgba(31, 107, 94, 0) 82%
+  );
 }
 
 /* ══════════════════════════════════════════════════════════════
