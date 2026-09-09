@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { aboutParagraphs, aboutFacts, aboutPhoto } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 /** Splits a paragraph so one phrase can be lifted out of the muted body colour. */
 function withEmphasis(text: string, emphasis: string | null) {
@@ -40,7 +41,7 @@ export default function About() {
           <div className="about-side">
             <figure className="about-photo rv up" style={{ "--d": "140ms" } as React.CSSProperties}>
               <Image
-                src={aboutPhoto.src}
+                src={asset(aboutPhoto.src)}
                 alt={aboutPhoto.alt}
                 width={1000}
                 height={750}

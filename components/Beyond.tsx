@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { beyond } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 export default function Beyond() {
   return (
@@ -23,7 +24,7 @@ export default function Beyond() {
               style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
             >
               <Image
-                src={p.src}
+                src={asset(p.src)}
                 alt={p.alt}
                 fill
                 sizes="(max-width: 760px) 92vw, (max-width: 1200px) 45vw, 32vw"

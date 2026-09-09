@@ -61,7 +61,7 @@ export default function Hero() {
             <span className="hp-glow" aria-hidden="true" />
             <span className="hp-frame">
               <Image
-                src={heroPhoto.src}
+                src={asset(heroPhoto.src)}
                 alt={heroPhoto.alt}
                 width={1400}
                 height={1050}
