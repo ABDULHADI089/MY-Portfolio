@@ -11,6 +11,7 @@ import Work from "@/components/Work";
 import Experience from "@/components/Experience";
 import Process from "@/components/Process";
 import Toolkit from "@/components/Toolkit";
+import Beyond from "@/components/Beyond";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -42,6 +43,7 @@ export default function Home() {
         <Experience />
         <Process />
         <Toolkit />
+        <Beyond />
         <Contact />
       </main>
 

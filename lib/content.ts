@@ -68,6 +68,66 @@ export const aboutFacts = [
   { label: "STATUS", value: "Open to opportunities", accent: "Open to opportunities" },
 ] as const;
 
+export const heroPhoto = {
+  src: "/media/travel/summit.jpg",
+  alt: "Abdul Hadi against a mountain skyline in northern Pakistan",
+  caption: "Signal: 0 bars. View: 10/10.",
+} as const;
+
+export const aboutPhoto = {
+  src: "/media/travel/about-portrait.jpg",
+  alt: "Abdul Hadi looking out at a waterfall in northern Pakistan",
+  caption: "Multan, PK",
+} as const;
+
+/**
+ * The personal, non-work side of the page. Photos live in public/media/travel,
+ * resized/compressed from the originals — see scripts note in git history.
+ */
+export const beyond = {
+  tag: "Off the clock",
+  heading: "Same instinct, different terrain",
+  lead: "The step most vision projects skip is testing where the thing will actually run — a dusty factory floor, a street pitch, bad lighting. I apply the same instinct off-screen: go and see how it actually behaves in the real world.",
+  photos: [
+    {
+      src: "/media/travel/waterfall.jpg",
+      alt: "Abdul Hadi sitting by a waterfall with a rainbow in the spray",
+      caption: "Found an edge case with a rainbow in it",
+      tall: true,
+    },
+    {
+      src: "/media/travel/canyon.jpg",
+      alt: "Abdul Hadi smiling in a narrow canyon beneath a waterfall",
+      caption: "No dataset has ever seen this pitch either",
+      tall: false,
+    },
+    {
+      src: "/media/travel/waterfall-2.jpg",
+      alt: "Abdul Hadi sitting by a waterfall with a rainbow in the spray, first take",
+      caption: "Same waterfall, different commit",
+      tall: false,
+    },
+    {
+      src: "/media/travel/about-portrait.jpg",
+      alt: "Abdul Hadi looking out at a waterfall in northern Pakistan",
+      caption: "Staring at the render, not the water",
+      tall: true,
+    },
+    {
+      src: "/media/travel/waterfall-3.jpg",
+      alt: "Abdul Hadi sitting by a waterfall with a rainbow in the spray, second take",
+      caption: "Reran it. Same rainbow.",
+      tall: false,
+    },
+    {
+      src: "/media/travel/waterfall-recline.jpg",
+      alt: "Abdul Hadi sitting sideways on rocks looking out at a waterfall and lake",
+      caption: "Taking a break between deploys",
+      tall: false,
+    },
+  ],
+} as const;
+
 export type Project = {
   id: string;
   kind: string;
@@ -256,6 +316,7 @@ export const sections = [
   { id: "experience", label: "EXPERIENCE" },
   { id: "process", label: "PROCESS" },
   { id: "toolkit", label: "TOOLKIT" },
+  { id: "beyond", label: "BEYOND" },
   { id: "contact", label: "CONTACT" },
 ] as const;
 

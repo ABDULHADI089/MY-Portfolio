@@ -1,4 +1,5 @@
-import { aboutParagraphs, aboutFacts } from "@/lib/content";
+import Image from "next/image";
+import { aboutParagraphs, aboutFacts, aboutPhoto } from "@/lib/content";
 
 /** Splits a paragraph so one phrase can be lifted out of the muted body colour. */
 function withEmphasis(text: string, emphasis: string | null) {
@@ -36,26 +37,39 @@ export default function About() {
             ))}
           </div>
 
-          <div className="panel rv up" style={{ "--d": "180ms" } as React.CSSProperties}>
-            <dl>
-              {aboutFacts.map((f) => (
-                <div key={f.label}>
-                  <dt>{f.label}</dt>
-                  <dd>
-                    {f.accent && f.accent !== f.value ? (
-                      <>
-                        {f.value.replace(f.accent, "")}
-                        <span className="k">{f.accent}</span>
-                      </>
-                    ) : f.accent === f.value ? (
-                      <span className="k">{f.value}</span>
-                    ) : (
-                      f.value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+          <div className="about-side">
+            <figure className="about-photo rv up" style={{ "--d": "140ms" } as React.CSSProperties}>
+              <Image
+                src={aboutPhoto.src}
+                alt={aboutPhoto.alt}
+                width={1000}
+                height={750}
+                sizes="(max-width: 960px) 90vw, 380px"
+              />
+              <figcaption>{aboutPhoto.caption}</figcaption>
+            </figure>
+
+            <div className="panel rv up" style={{ "--d": "220ms" } as React.CSSProperties}>
+              <dl>
+                {aboutFacts.map((f) => (
+                  <div key={f.label}>
+                    <dt>{f.label}</dt>
+                    <dd>
+                      {f.accent && f.accent !== f.value ? (
+                        <>
+                          {f.value.replace(f.accent, "")}
+                          <span className="k">{f.accent}</span>
+                        </>
+                      ) : f.accent === f.value ? (
+                        <span className="k">{f.value}</span>
+                      ) : (
+                        f.value
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </div>
       </div>
