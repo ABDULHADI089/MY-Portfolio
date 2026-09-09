@@ -137,6 +137,9 @@ export type Project = {
   glyph: "orbit" | "scan" | "rail" | "pos" | "house" | "face";
   wide?: boolean;
   video?: string;
+  github?: string;
+  /** Client work under a private repo — no code link, but a demo is on the way. */
+  demoComingSoon?: boolean;
 };
 
 export const projects: readonly Project[] = [
@@ -150,6 +153,7 @@ export const projects: readonly Project[] = [
     glyph: "orbit",
     wide: true,
     video: "/media/smart-cric-demo.mp4",
+    github: "https://github.com/ABDULHADI089/SmartCric-App",
   },
   {
     id: "facial-attendance",
@@ -159,6 +163,7 @@ export const projects: readonly Project[] = [
       "Touchless staff attendance for a knitwear factory floor. Recognises faces in real time and feeds straight into the ERP's HR and payroll modules, so the register reconciles itself.",
     stack: ["TensorFlow", "OpenCV", "Python", "SQL"],
     glyph: "scan",
+    github: "https://github.com/ABDULHADI089/Facial-Attenddance-System",
   },
   {
     id: "trektrain",
@@ -168,6 +173,7 @@ export const projects: readonly Project[] = [
       "A commuter rail booking platform for the South African market, built at DevNodes — schedules, seat selection and ticketing for daily riders.",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
     glyph: "rail",
+    demoComingSoon: true,
   },
   {
     id: "pk-electric-pos",
@@ -177,6 +183,7 @@ export const projects: readonly Project[] = [
       "Cloud-based, multi-user EPOS running an electronics retail store — inventory, billing and multi-terminal sync, used daily by staff on the shop floor.",
     stack: ["Next.js", "Supabase", "TypeScript"],
     glyph: "pos",
+    demoComingSoon: true,
   },
   {
     id: "household-staff",
@@ -186,6 +193,7 @@ export const projects: readonly Project[] = [
       "A Turborepo monorepo pairing a Next.js dashboard with an Expo mobile app on a shared Supabase backend, for assigning and tracking household staff work.",
     stack: ["Turborepo", "Expo", "Supabase"],
     glyph: "house",
+    github: "https://github.com/ABDULHADI089/Household-management-system",
   },
   {
     id: "emotion-checker",

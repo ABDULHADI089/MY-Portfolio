@@ -908,6 +908,29 @@ h2 {
   width: 14px;
   height: 14px;
 }
+.demo-btn-alt {
+  color: var(--iris);
+  background: rgba(139, 156, 255, 0.08);
+  border-color: rgba(139, 156, 255, 0.32);
+}
+.demo-btn-alt:hover {
+  background: rgba(139, 156, 255, 0.16);
+  border-color: rgba(139, 156, 255, 0.6);
+}
+.demo-btn-alt svg:last-child {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+.demo-btn-soon {
+  color: var(--dim);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--line);
+  cursor: default;
+}
+.demo-btn-soon:hover {
+  transform: none;
+}
 
 /* ══════════════════════════════════════════════════════════════
    Experience
@@ -1527,7 +1550,8 @@ h2 {
 }
 .fld input::placeholder,
 .fld textarea::placeholder {
-  color: #4d545f;
+  color: var(--muted);
+  opacity: 1;
 }
 .fld input:hover,
 .fld textarea:hover {

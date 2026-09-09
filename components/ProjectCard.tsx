@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import type { Project } from "@/lib/content";
 import { asset } from "@/lib/asset";
-import { projectGlyphs, PlayIcon } from "./icons";
+import { projectGlyphs, PlayIcon, GithubIcon, ArrowUpRight } from "./icons";
 import VideoModal from "./VideoModal";
 
 export default function ProjectCard({ project, delay }: { project: Project; delay: number }) {
@@ -66,12 +66,31 @@ export default function ProjectCard({ project, delay }: { project: Project; dela
 
         <p>{project.blurb}</p>
 
-        {project.video && (
+        {(project.video || project.github || project.demoComingSoon) && (
           <div className="card-actions">
-            <button className="demo-btn" onClick={() => setShowVideo(true)}>
-              <PlayIcon />
-              WATCH DEMO
-            </button>
+            {project.video && (
+              <button className="demo-btn" onClick={() => setShowVideo(true)}>
+                <PlayIcon />
+                WATCH DEMO
+              </button>
+            )}
+            {project.github && (
+              <a
+                className="demo-btn demo-btn-alt"
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GithubIcon />
+                VIEW CODE
+                <ArrowUpRight />
+              </a>
+            )}
+            {project.demoComingSoon && (
+              <span className="demo-btn demo-btn-soon" aria-disabled="true">
+                DEMO COMING SOON
+              </span>
+            )}
           </div>
         )}
 
