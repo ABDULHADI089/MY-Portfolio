@@ -1,4 +1,4 @@
-import { process } from "@/lib/content";
+import { processSteps } from "@/lib/content";
 
 export default function Process() {
   return (
@@ -18,7 +18,7 @@ export default function Process() {
         </div>
 
         <div className="stack-wrap">
-          {process.map((step, i) => (
+          {processSteps.map((step, i) => (
             <div
               className="pcard rv up"
               key={step.n}
