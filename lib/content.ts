@@ -4,6 +4,12 @@
  * Deliberately excludes education / university, per the site owner's request.
  */
 
+// globalThis.process, not process — this module also exports a `process`
+// constant below (the "Process" section content), which shadows the Node
+// global for the rest of the file.
+export const SITE_URL =
+  globalThis.process.env.NEXT_PUBLIC_SITE_URL ?? "https://abdulhadi089.github.io/MY-Portfolio";
+
 export const profile = {
   name: "Abdul Hadi",
   role: "Software Engineer",

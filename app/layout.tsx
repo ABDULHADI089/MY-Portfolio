@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Sora, Inter, JetBrains_Mono } from "next/font/google";
-import { profile } from "@/lib/content";
+import { profile, SITE_URL } from "@/lib/content";
 import "./globals.css";
 
 const sora = Sora({
@@ -23,9 +23,6 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
   display: "swap",
 });
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://abdulhadi089.github.io/MY-Portfolio";
 
 const title = `${profile.name} — ${profile.headline}`;
 const description =
