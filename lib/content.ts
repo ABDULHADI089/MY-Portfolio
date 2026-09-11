@@ -151,8 +151,8 @@ export const projects: readonly Project[] = [
     kind: "COMPUTER VISION · IN PROGRESS",
     title: "Smart Cric — AI umpire for tape-ball cricket",
     blurb:
-      "Real-time ball tracking and umpiring decisions from a phone camera, with a live scoreboard — built for street cricket, where there are no line markings, no fixed camera and no clean footage. Now growing into a Turborepo monorepo with a Next.js web app, an Expo mobile app and live score API integration.",
-    stack: ["OpenCV", "PyTorch", "Expo", "Next.js", "Turborepo"],
+      "Real-time ball tracking and umpiring decisions from a phone camera, with a live scoreboard — built for street cricket, where there are no line markings, no fixed camera and no clean footage. Uses a YOLO-based object detector to find the ball frame-to-frame and a lightweight tracker to hold onto it through blur, occlusion and bad lighting. Now growing into a Turborepo monorepo with a Next.js web app, an Expo mobile app and live score API integration.",
+    stack: ["OpenCV", "PyTorch", "YOLO", "Object tracking", "Expo", "Next.js", "Turborepo"],
     glyph: "orbit",
     wide: true,
     video: "/media/smart-cric-demo.mp4",
@@ -309,8 +309,9 @@ export const toolkit = [
       "Keras",
       "PyTorch",
       "OpenCV",
+      "YOLO (object detection)",
+      "Multi-object tracking",
       "Facial recognition",
-      "Object tracking",
       "Emotion detection",
     ],
   },
@@ -327,8 +328,56 @@ export const sections = [
   { id: "experience", label: "EXPERIENCE" },
   { id: "process", label: "PROCESS" },
   { id: "toolkit", label: "TOOLKIT" },
+  { id: "certifications", label: "CERTS" },
   { id: "beyond", label: "BEYOND" },
   { id: "contact", label: "CONTACT" },
 ] as const;
+
+export type Certification = {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  file: string;
+  fileType: "pdf" | "image";
+  verifyUrl?: string;
+};
+
+export const certifications: readonly Certification[] = [
+  {
+    id: "ai-hero-workflow",
+    title: "AI Hero Skills Workflow Course",
+    issuer: "AI Hero",
+    date: "Aug 2026",
+    file: "/certificates/ai-hero-skills-workflow.png",
+    fileType: "image",
+    verifyUrl: "https://www.aihero.dev/certificates/1yaoI9F3W8-ZchRe_9JX9lgJUz2HsSSp",
+  },
+  {
+    id: "google-soft-skills",
+    title: "Google Soft Skills Program",
+    issuer: "Google · via Pakistan Freelancers Association",
+    date: "Dec 2024",
+    file: "/certificates/google-soft-skills.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "linkedin-generative-ai",
+    title: "What Is Generative AI?",
+    issuer: "LinkedIn Learning",
+    date: "Feb 2024",
+    file: "/certificates/linkedin-generative-ai.pdf",
+    fileType: "pdf",
+  },
+  {
+    id: "coding-ninjas-dsa",
+    title: "Basics of Data Structures and Algorithms in Java",
+    issuer: "Coding Ninjas",
+    date: "Feb 2023",
+    file: "/certificates/coding-ninjas-dsa-java.pdf",
+    fileType: "pdf",
+    verifyUrl: "https://certificate.codingninjas.com/verify/6ef3ec018cb16ab0",
+  },
+];
 
 export const CV_FILE = "/cv/Abdul-Hadi-CV.pdf";

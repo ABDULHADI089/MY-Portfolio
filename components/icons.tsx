@@ -88,6 +88,20 @@ export const CloseIcon = (p: P) => (
   </svg>
 );
 
+export const AwardIcon = (p: P) => (
+  <svg {...base} {...p} aria-hidden="true">
+    <circle cx="12" cy="8.5" r="5.5" />
+    <path d="m8.3 13.2-1.6 7.3 5.3-2.9 5.3 2.9-1.6-7.3" />
+  </svg>
+);
+
+export const FileIcon = (p: P) => (
+  <svg {...base} {...p} aria-hidden="true">
+    <path d="M7 3.5h7.5L18 7v13.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" />
+    <path d="M14.5 3.5V7H18" />
+  </svg>
+);
+
 export const SendIcon = (p: P) => (
   <svg {...base} {...p} aria-hidden="true">
     <path d="M20.5 3.5 11 13" />
